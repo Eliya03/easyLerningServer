@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
     verifiction: {
         type: Boolean, default: false
     },
+    level: {
+        type: String, default: "beginner"
+    },
 });
 
 exports.UserModel = mongoose.model("users", userSchema);

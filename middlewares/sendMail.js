@@ -14,7 +14,7 @@ module.exports = async (email, subject, text) => {
 
   // Set up email data
   const mailOptions = {
-    from: "roie1158@gmail.com", 
+    from: process.env.USER, 
     to: email,
     subject: subject,
     text: text,

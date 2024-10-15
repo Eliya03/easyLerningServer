@@ -121,61 +121,61 @@ router.patch("/verification", async (req, res) => {
 })
 
 // Forgot password 
-router.patch("/forgotpass", async (req, res) => {
-  try {
-    let thisEmail = req.body.email;
-    let user = await UserModel.findOne({ email: thisEmail });
-    user.verifictionCode = (Math.floor(Math.random() * (9999 - 1000)) + 1000).toString();
-    await sendMail(user.email, "verifiction code to beelingual", user.verifictionCode);
-    let data = await UserModel.updateOne({ _id: user._id }, user);
-    res.status(200).json(data);
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-})
+// router.patch("/forgotpass", async (req, res) => {
+//   try {
+//     let thisEmail = req.body.email;
+//     let user = await UserModel.findOne({ email: thisEmail });
+//     user.verifictionCode = (Math.floor(Math.random() * (9999 - 1000)) + 1000).toString();
+//     await sendMail(user.email, "verifiction code to beelingual", user.verifictionCode);
+//     let data = await UserModel.updateOne({ _id: user._id }, user);
+//     res.status(200).json(data);
+//   }
+//   catch (err) {
+//     console.log(err);
+//     return res.status(500).json(err);
+//   }
+// })
 
 // User authentication before password change
-router.patch("/validation", async (req, res) => {
-  try {
-    let thisEmail = req.body.email;
-    let thisVerifictionCode = req.body.validationCode;
-    let user = await UserModel.findOne({ email: thisEmail });
-    if (!user) {
-      return res.status(401).json({ err: "Email not found. Return to  forgot password page !"});
-    }
-    if (user.verifictionCode != thisVerifictionCode) {
-      return res.json("Incorrect code");
-    }
-    user.verifictionCode = (Math.floor(Math.random() * (9999 - 1000)) + 1000).toString();
-    let data = await UserModel.updateOne({ _id: user._id }, user);
-    res.status(200).json(data);
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-})
+// router.patch("/validation", async (req, res) => {
+//   try {
+//     let thisEmail = req.body.email;
+//     let thisVerifictionCode = req.body.validationCode;
+//     let user = await UserModel.findOne({ email: thisEmail });
+//     if (!user) {
+//       return res.status(401).json({ err: "Email not found. Return to  forgot password page !"});
+//     }
+//     if (user.verifictionCode != thisVerifictionCode) {
+//       return res.json("Incorrect code");
+//     }
+//     user.verifictionCode = (Math.floor(Math.random() * (9999 - 1000)) + 1000).toString();
+//     let data = await UserModel.updateOne({ _id: user._id }, user);
+//     res.status(200).json(data);
+//   }
+//   catch (err) {
+//     console.log(err);
+//     return res.status(500).json(err);
+//   }
+// })
 
 //  change password
-router.patch("/changePass", async (req, res) => {
-  try {
-    let thisEmail = req.body.email;
-    let newPass = req.body.password;
-    let user = await UserModel.findOne({ email: thisEmail });
-    if (!user) {
-      return res.status(401).json({ err: "Email not found. Return to  forgot password page !" });
-    }
-    user.password = newPass
-    let data = await UserModel.updateOne({ _id: user._id }, user);
-    res.status(200).json(data);
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-})
+// router.patch("/changePass", async (req, res) => {
+//   try {
+//     let thisEmail = req.body.email;
+//     let newPass = req.body.password;
+//     let user = await UserModel.findOne({ email: thisEmail });
+//     if (!user) {
+//       return res.status(401).json({ err: "Email not found. Return to  forgot password page !" });
+//     }
+//     user.password = newPass
+//     let data = await UserModel.updateOne({ _id: user._id }, user);
+//     res.status(200).json(data);
+//   }
+//   catch (err) {
+//     console.log(err);
+//     return res.status(500).json(err);
+//   }
+// })
 
 
 // Update for user

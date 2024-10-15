@@ -10,6 +10,10 @@ module.exports = async (email, subject, text) => {
       user: process.env.USER, // Gmail address
       pass: process.env.PASS, // Gmail password
     },
+    tls: {
+      rejectUnauthorized: false // ביטול אימות האישורים
+    }
+
   });
 
   // Set up email data

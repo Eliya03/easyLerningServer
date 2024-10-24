@@ -19,12 +19,8 @@ router.get("/test1/:level", async (req, res) => {
         let userMessage;
 
         // הכנת ההודעה המבוקשת לפי הרמה
-        if (level === 'beginner') {
-            userMessage = "Please generate a very simple sentence using only basic English vocabulary. The sentence should be 15-20 words long, easy to understand for beginner English learners, and contain no difficult words.";
-        } else if (level === 'intermediate') {
-            userMessage = "Please generate a sentence using intermediate English vocabulary. The sentence should be 15-20 words long, suitable for intermediate English learners, and include some complexity.";
-        } else if (level === 'advanced') {
-            userMessage = "Please generate a complex sentence using advanced English vocabulary. The sentence should be 15-20 words long, suitable for advanced English learners, and demonstrate a variety of sentence structures.";
+        if (level === 'beginner' || level === 'intermediate' || level === 'advanced') {
+            userMessage = `Please generate a very simple sentence using only basic English vocabulary. The sentence should be 15-20 words long, easy to understand for ${level} English learners, and contain no difficult words.`;
         } else {
             return res.status(400).json({ error: "Invalid level specified. Use 'beginner', 'intermediate', or 'advanced'." });
         }

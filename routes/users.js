@@ -131,7 +131,6 @@ router.put("/level", auth , async (req, res) => {
     let user = await UserModel.findOne({ _id: token_id });
     user.level = thisLevel ;
     let updateData = await UserModel.updateOne({ _id: token_id }, user);
-    updateData.password= "****" ;
     res.status(200).json(updateData);
   } catch (err) {
     console.log(err);

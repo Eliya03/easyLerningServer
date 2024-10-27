@@ -21,6 +21,11 @@ router.get("/allMyTest", auth, async (req, res, next) => {
 });
 
 
+// {
+//   "level": "beginner",
+//   "TestScore1": 30
+// }
+
 // add test1
 router.post("/test1", auth, async (req, res) => {
   let token = req.header("x-api-key");
@@ -41,6 +46,11 @@ router.post("/test1", auth, async (req, res) => {
 });
 
 
+// {
+//   "test_id": "",
+//   "TestScore": 20
+// }
+
 // add test2
 router.put("/test2", auth, async (req, res) => {
   let _Body = req.body;
@@ -51,12 +61,15 @@ router.put("/test2", auth, async (req, res) => {
     let test = await TestsModel.findOne({ _id: test_id });
     test.TestScore2 = TestScore2;
     let updateData = await TestsModel.updateOne({ _id: test_id }, test);
+    console.log(updateData);
     res.status(200).json(updateData);
+    
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
   }
 })
+
 
 // add test3
 router.put("/test3", auth, async (req, res) => {

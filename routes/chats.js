@@ -5,6 +5,7 @@ const OpenAI = require("openai");
 // הגדרת ה-API Key שלך
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
+
 });
 
 // נתיב GET לדף הבית

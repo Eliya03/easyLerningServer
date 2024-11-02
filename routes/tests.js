@@ -20,6 +20,17 @@ router.get("/allMyTest", auth, async (req, res, next) => {
   res.json(allTest);
 });
 
+/* GET single user by id */
+router.get("/single/:testId",auth , async (req, res) => {
+  try {
+    let testId = req.params.testId;
+    let data = await TestsModel.findOne({ _id: testId });
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
 
 // {
 //   "level": "beginner",
